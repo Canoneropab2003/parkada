@@ -1,0 +1,617 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f5f6fa;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  background: #fff;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* LEFT SIDE */
+.left {
+  flex: 1;
+  background: #0b2447;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.left img {
+  width: 120px;
+  margin-bottom: 20px;
+}
+
+.left h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.left p {
+  font-size: 16px;
+  max-width: 350px;
+}
+
+.form-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* Center the content inside each form */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  /* Animation */
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.form-box.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.toggle-password {
+  cursor: pointer;
+}
+
+.form-boxs {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* Center the content inside each form */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  /* Animation */
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.form-boxs.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* RIGHT SIDE */
+.right {
+  position: relative;
+  width: 600px;   /* fixed width for login & register */
+  height: 600px;  /* fixed height */
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  overflow: hidden;
+  padding: 30px;
+  box-sizing: border-box;
+
+  /* Center content */
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
+  flex-direction: column;  /* stack elements vertically */
+  text-align: center;      /* center text inside */
+}
+
+.right h2 {
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #111;
+}
+
+/* Name row layout */
+.name-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* wrap on smaller screens */
+}
+
+/* Name inputs */
+.name-row .input-box {
+  flex: 1; /* First Name & Last Name expand to fill space */
+}
+
+.name-row .input-box.small {
+  flex: 0 0 px; /* MI and Suffix smaller */
+}
+
+/* General input box spacing */
+.input-box {
+  margin-bottom: 20px;
+  position: relative;
+  width: 100%;
+}
+
+/* Input field styling */
+.input-box input {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+/* Input focus effect */
+.input-box input:focus {
+  border-color: #0b2447;
+  box-shadow: 0 0 5px rgba(11,36,71,0.2);
+}
+
+/* Password toggle icon */
+.password-box {
+  position: relative;
+}
+
+.password-box .toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #555;
+}
+
+.password-box .toggle-password:hover {
+  color: #007bff;
+}
+
+
+/* Terms and conditions */
+.terms {
+  margin-bottom: 15px;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* Register button */
+.register-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 30px;
+  background-color: #0b2447;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.register-btn:hover {
+  background-color: #07203f;
+}
+
+/* Login link */
+.login {
+  text-align: center;
+  font-size: 14px;
+}
+
+.login a {
+  color: #0b2447;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login a:hover {
+  text-decoration: underline;
+}
+
+
+.password-box {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* OPTIONS */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.options a {
+  text-decoration: none;
+  color: #0b63f6;
+  font-weight: 500;
+}
+
+/* BUTTON */
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 30px;
+  background: #0b2447;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: #19376d;
+}
+
+/* REGISTER */
+.register {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.register a {
+  color: #0b63f6;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Center content inside the forgot password form */
+#forgotForm .forgot-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 350px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#forgotForm .input-box {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+#forgotForm .input-box input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+#forgotForm .forgot-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+#forgotForm .forgot-buttons button {
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.strength-container {
+    margin-top: 5px;
+}
+
+.strength-bar {
+    height: 5px;
+    width: 0;
+    background-color: red;
+    border-radius: 5px;
+    transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+.strength-text {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.strength-text.show {
+    opacity: 1;
+    max-height: 50px;
+}
+
+.strength-text.weak {
+    color: red;
+}
+
+.strength-text.moderate {
+    color: orange;
+}
+
+.strength-text.strong {
+    color: green;
+}
+
+#step2 {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#step2.active {
+  display: block;
+  opacity: 1;
+}
+
+/* YEAR LEVEL BOX HIDDEN BY DEFAULT */
+#yearLevelBox {
+  display: none;
+}
+
+/* YEAR LEVEL BOX */
+#yearLevelBox {
+  display: none; /* Hidden by default */
+  margin-bottom: 20px;
+}
+
+#yearLevelBox label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+#yearLevelBox select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+#yearLevelBox select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+.complete-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
+  display: block;
+}
+
+.complete-btn:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.complete-btn:active {
+  transform: translateY(0);
+}
+
+.input-box select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 14px;
+  background: #f9f9f9;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.input-box select:focus {
+  border-color: #007bff;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+  outline: none;
+}
+
+.input-box select option {
+  padding: 10px;
+  font-size: 14px;
+}
+
+
+/* =============== RESPONSIVE =============== */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    max-width: 500px;
+  }
+
+  .left, .right {
+    flex: none;
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  .left {
+    border-radius: 20px 20px 0 0;
+  }
+
+  .right {
+    border-radius: 0 0 20px 20px;
+  }
+
+  .left h1 {
+    font-size: 24px;
+  }
+
+  .left p {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .right h2 {
+    font-size: 20px;
+  }
+
+  .input-box input {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .login-btn {
+    font-size: 15px;
+    padding: 12px;
+  }
+}
+
+/* TERMS */
+.terms {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.terms a {
+  color: #0b63f6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* BUTTON */
+.register-btn {
+  width: 80%;
+  padding: 14px;
+  border: none;
+  border-radius: 30px;
+  background: #0b2447;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.register-btn:hover {
+  background: #19376d;
+}
+
+/* LOGIN REDIRECT */
+.login {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.login a {
+  color: #0b63f6;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Forgot Password Form Styling */
+#forgotForm h2 {
+  margin-bottom: 10px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+#forgotForm p {
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #555;
+  text-align: center;
+}
+
+.reset-btn {
+  width: 100%;
+  padding: 12px;
+  background: #27ae60;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.reset-btn:hover {
+  background: #1e8449;
+}
+
+
+@media (max-width: 480px) {
+  .left img {
+    width: 90px;
+  }
+
+  .left h1 {
+    font-size: 20px;
+  }
+
+  .left p {
+    font-size: 13px;
+  }
+
+  .right h2 {
+    font-size: 18px;
+  }
+
+  .options {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 13px;
+  }
+
+  .toggle-password {
+    font-size: 14px;
+    right: 15px;
+  }
+}

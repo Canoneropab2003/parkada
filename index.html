@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PARKADA - Login</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
+</head>
+<body>
+  <div class="container">
+    <!-- LEFT SIDE -->
+    <div class="left">
+      <img src="images/logo/Parkada.png" alt="Parkada">
+      <h1>PARKADA</h1>
+      <p>Smart parking made simple for UB students, faculty, and staff.</p>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right">
+      <!-- LOGIN FORM -->
+      <div id="loginForm" class="form-box active">
+        <h2>Log into your Account</h2>
+        <form>
+          <div class="input-box">
+            <input type="email" placeholder="Email Address" required>
+          </div>
+          <div class="input-box password-box">
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <span class="toggle-password" onclick="togglePassword('loginPassword')">
+            <i class="fas fa-eye"></i>
+            </span>
+          </div>
+
+          <div class="options">
+            <label><input type="checkbox"> Remember Me</label>
+            <a href="javascript:void(0)" onclick="showForm('forgotForm')">Forgot Your Password?</a>
+          </div>
+
+          <button type="submit" class="login-btn">Login</button>
+
+          <div class="register">
+            Don't have an account? <a href="#" onclick="showForm('registerForm')">Register</a>
+          </div>
+        </form>
+      </div>
+
+        <!-- REGISTER FORM -->
+        <div id="registerForm" class="form-boxs">
+          <h2>Create Your Account</h2>
+            <form id="step1">
+            <div class="name-row">
+              <div class="input-box">
+                <input type="text" placeholder="First Name" required>
+              </div>
+              <div class="input-box">
+                <input type="text" placeholder="Last Name" required>
+              </div>
+              <div class="input-box small">
+                <input type="text" placeholder="MI" maxlength="1" required>
+              </div>
+              <div class="input-box small">
+                <input type="text" placeholder="Suffix"  pattern="[A-Za-z.\s]*" title="Only letters, spaces, and periods are allowed">
+              </div>
+            </div>
+
+            <div class="input-box">
+              <input type="email" placeholder="Email Address" required>
+            </div>
+            <div class="input-box">
+              <input type="text" placeholder="Username" required>
+            </div>
+            <div class="input-box password-box">
+      <input type="password" id="regPassword" placeholder="Password" required oninput="checkPasswordStrength()">
+      <span class="toggle-password" onclick="togglePassword('regPassword')">
+        <i class="fas fa-eye"></i>
+      </span>
+  </div>
+
+  <!-- Password strength indicator -->
+  <div class="strength-container">
+      <div id="password-strength-bar" class="strength-bar"></div>
+      <div id="password-strength" class="strength-text hidden">Password Strength: </div>
+  </div>
+
+  <div class="input-box password-box">
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+      <span class="toggle-password" onclick="togglePassword('confirmPassword')">
+        <i class="fas fa-eye"></i>
+      </span>
+  </div>
+
+            <button type="button" class="register-btn" onclick="nextStep()">Sign Up</button>
+
+          <div class="login">
+            Already have an account? <a href="#" onclick="showForm('loginForm')">Login</a>
+          </div>
+        </form>
+
+        <!-- Step 2: Account Type / ID / RFID / Year Level -->
+          <form id="step2">
+            <!-- Account Type -->
+            <div class="input-box">
+              <label for="accountType">Account Type</label>
+              <select id="accountType" name="accountType" required>
+                <option value="" disabled selected>Select Account Type</option>
+                <option value="student">Student</option>
+                <option value="faculty">Faculty</option>
+                <option value="staff">Staff</option>
+              </select>
+            </div>
+
+            <!-- ID Number -->
+            <div class="input-box">
+              <label for="idNumber">ID Number</label>
+              <input id="idNumber" name="idNumber" type="text" placeholder="e.g., 20-1234-544" required pattern="\d{2}-\d{4}-\d{3}" title="Enter ID in the format: 21-67890-321" maxlength="12">
+            </div>
+
+            <!-- RFID -->
+            <div class="input-box">
+              <label for="rfid">RFID</label>
+              <input id="rfid" name="rfid" type="text" placeholder="e.g., 0009426269" required pattern="\d{10}">
+            </div>
+
+            <!-- Year Level -->
+            <div class="input-box" id="yearLevelBox">
+              <label for="yearLevel">Year Level</label>
+              <select id="yearLevel" name="yearLevel">
+                <option value="" disabled selected>Select Year Level</option>
+                <option value="1st">1st Year</option>
+                <option value="2nd">2nd Year</option>
+                <option value="3rd">3rd Year</option>
+                <option value="4th">4th Year</option>
+                <option value="5th">5th Year</option>
+              </select>
+            </div>
+
+            <div class="terms">
+              <label>
+                <input type="checkbox" required> I read and accept the <a href="#">Terms & Conditions</a>
+              </label>
+            </div>
+            <button type="submit" class="complete-btn">Complete Registration</button>
+          </form>
+      </div>
+
+      <!-- FORGOT PASSWORD FORM -->
+      <div id="forgotForm" class="form-box">
+      <div class="forgot-wrapper">
+        <h2>Forgot your password?</h2>
+        <p>We'll email you a link to reset your password.</p>
+
+        <!-- Email input styled like login/register -->
+        <div class="input-box">
+          <input type="email" id="forgotEmail" placeholder="Email Address" required>
+        </div>
+
+        <!-- Buttons -->
+        <div class="forgot-buttons">
+          <button class="reset-btn" onclick="sendResetLink()">Send Reset Link</button>
+          <button class="cancel-btn" onclick="showForm('loginForm')">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- LINK TO EXTERNAL JS -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<!-- Firebase SDKs (v8 for simplicity with your script.js) -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script>
+  // ✅ Corrected config (notice .appspot.com)
+  const firebaseConfig = {
+  apiKey: "AIzaSyDRlpDYxf--dgew89vkPfWixAziEh8uC5Q",
+  authDomain: "parkada-9462c.firebaseapp.com",
+  projectId: "parkada-9462c",
+  storageBucket: "parkada-9462c.firebasestorage.app",
+  messagingSenderId: "271996229570",
+  appId: "1:271996229570:web:2fe668b52ca587da4c685b",
+  measurementId: "G-QMMVD62GQL"
+};
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Make available globally so script.js can use them
+  window.auth = firebase.auth();
+  window.db = firebase.firestore();
+</script>
+
+<!-- Your custom JS -->
+<script src="script.js"></script>
+
+</body>
+</html>
